@@ -51,7 +51,7 @@ export default function Home() {
     <div>
       <Head>
         <title>{title}</title>
-        <link rel="icon" href="/loading.gif" />
+        <link rel="icon" href="/logo.png" />
       </Head>
 
       <main className={styles.main}>
