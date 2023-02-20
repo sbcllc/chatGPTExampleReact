@@ -55,6 +55,14 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
+        {!loading && result.length != 0 && (<div className={styles.result}>
+          <h3>Here are some ideas:</h3>
+          {result.map((item, key) => {
+            return <span key={key}>{item}<br /></span>
+          })}
+
+        </div>)}
+
         <h3>{title}</h3>
         {!loading && (<form onSubmit={onSubmit}>
           <label>For who is the gift?</label>
@@ -105,12 +113,7 @@ export default function Home() {
             <img src="/loading.gif" className={styles.loading} />
           </div>
         )}
-        {!loading && (<div className={styles.result}>
-          {result.map((item, key) => {
-            return <span key={key}>{item}<br /></span>
-          })}
 
-        </div>)}
       </main>
     </div>
   );
