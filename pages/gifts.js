@@ -14,7 +14,7 @@ export default function Home() {
 
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState([]);
-  const [title, setTitle] = useState('OpenAI Gift generator 🎁 💡');
+  const [title, setTitle] = useState("Soren's OpenAI Gift generator 🎁 💡");
 
   async function onSubmit(event) {
     event.preventDefault();
@@ -45,7 +45,7 @@ export default function Home() {
       alert('OpenAI is really busy right now, try again later',);
     } finally {
       setLoading(false);
-      setTitle('OpenAI Gift generator');
+      setTitle("Soren's OpenAI Gift generator");
     }
   }
 
