@@ -6,8 +6,8 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 export default async function (req, res) {
-  const { priceMin, priceMax, gender, age, hobbies } = req.body;
-  const prompt = generatePrompt(priceMin, priceMax, gender, age, hobbies);
+  const { occasion, priceMin, priceMax, gender, age, hobbies } = req.body;
+  const prompt = generatePrompt(occasion, priceMin, priceMax, gender, age, hobbies);
 
   // console.log(prompt);
 
@@ -47,8 +47,8 @@ export default async function (req, res) {
   }
 }
 
-function generatePrompt(priceMin, priceMax, gender, age, hobbies) {
-  return `Suggest three Christmas gift ideas between ${priceMin}
+function generatePrompt(occasion, priceMin, priceMax, gender, age, hobbies) {
+  return `Suggest three gift ideas with prices for ${occasion} present between ${priceMin}
 and ${priceMax} for a ${age} years old ${gender} that is into ${hobbies}.
 
 presents:`;

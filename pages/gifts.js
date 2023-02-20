@@ -4,15 +4,17 @@ import { useState } from "react";
 import styles from "./index.module.css";
 
 export default function Home() {
+  const [occasion, setOccasion] = useState('birthday');
   const [gender, setGender] = useState('man');
   const [age, setAge] = useState(30);
   const [priceMin, setPriceMin] = useState(25);
   const [priceMax, setPriceMax] = useState(100);
   const [hobbies, setHobbies] = useState('');
 
+
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState([]);
-  const [title, setTitle] = useState('Christmas gift generator 🎁 💡');
+  const [title, setTitle] = useState('OpenAI Gift generator 🎁 💡');
 
   async function onSubmit(event) {
     event.preventDefault();
@@ -22,13 +24,13 @@ export default function Home() {
 
     try {
       setLoading(true);
-      setTitle('Looking for the best gift ideas 🎁 💡')
+      setTitle('Looking for the best gift ideas...')
       const response = await fetch("/api/generate-gifts", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ priceMin, priceMax, gender, age, hobbies }),
+        body: JSON.stringify({ occasion, priceMin, priceMax, gender, age, hobbies }),
       });
 
       const data = await response.json();
@@ -43,7 +45,7 @@ export default function Home() {
       alert('Failed to generate gift ideas. Try later',);
     } finally {
       setLoading(false);
-      setTitle('Christmas gift generator 🎁 💡');
+      setTitle('OpenAI Gift generator');
     }
   }
 
@@ -65,6 +67,14 @@ export default function Home() {
 
         <h3>{title}</h3>
         {!loading && (<form onSubmit={onSubmit}>
+          <label>For what occassion is the gift?</label>
+          <select name="occasion" value={occasion} onChange={(e) => setOccasion(e.target.value)}>
+            <option value="birthday">birthday</option>
+            <option value="christmas">christmas</option>
+            <option value="graduation">graduation</option>
+            <option value="valentine's day">valentine's day</option>
+            <option value="wedding anniversary">wedding anniversary</option>
+          </select>
           <label>For who is the gift?</label>
           <select name="gender" value={gender} onChange={(e) => setGender(e.target.value)}>
             <option value="man">Man</option>
