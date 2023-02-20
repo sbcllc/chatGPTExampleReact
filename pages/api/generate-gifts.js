@@ -48,8 +48,8 @@ export default async function (req, res) {
 }
 
 function generatePrompt(occasion, priceMin, priceMax, gender, age, hobbies) {
-  return `Suggest three gift ideas with prices for ${occasion} present between ${priceMin}
-and ${priceMax} for a ${age} years old ${gender} that is into ${hobbies}.
+  return `Suggest three gift ideas for a ${occasion} present with prices between ${priceMin}
+and ${priceMax} dollars for a ${age} year old ${gender} that is into ${hobbies}.
 
 presents:`;
 }

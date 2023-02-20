@@ -9,7 +9,7 @@ export default function Home() {
   const [age, setAge] = useState(30);
   const [priceMin, setPriceMin] = useState(25);
   const [priceMax, setPriceMax] = useState(100);
-  const [hobbies, setHobbies] = useState('');
+  const [hobbies, setHobbies] = useState('travel, food, outdoors');
 
 
   const [loading, setLoading] = useState(false);
@@ -24,7 +24,7 @@ export default function Home() {
 
     try {
       setLoading(true);
-      setTitle('Looking for the best gift ideas...')
+      setTitle(`Looking for three gift ideas for a ${occasion} present with prices between ${priceMin} and ${priceMax} dollars for a ${age} year old ${gender} that is into ${hobbies}.`)
       const response = await fetch("/api/generate-gifts", {
         method: "POST",
         headers: {
@@ -42,7 +42,7 @@ export default function Home() {
     } catch (error) {
       // Consider implementing your own error handling logic here
       console.error(error);
-      alert('Failed to generate gift ideas. Try later',);
+      alert('OpenAI is really busy right now, try again later',);
     } finally {
       setLoading(false);
       setTitle('OpenAI Gift generator');
